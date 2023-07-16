@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Define color variables
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
 # Define pool options
 pool_options=(
     "pool.hashvault.pro:80"
@@ -11,7 +16,7 @@ pool_options=(
 # Function to configure XMRig
 configure_xmrig() {
     # Prompt for pool selection
-    echo "Select a pool to mine Monero (XMR):"
+    echo -e "${YELLOW}Select a pool to mine Monero (XMR):${NC}"
     for i in "${!pool_options[@]}"; do
         echo "[$i] - ${pool_options[$i]}"
     done
@@ -32,7 +37,7 @@ configure_xmrig() {
             pool_url="${pool_options[$pool_choice]}"
         fi
     else
-        echo "Invalid pool choice. Exiting..."
+        echo -e "${RED}Invalid pool choice. Exiting...${NC}"
         exit 1
     fi
 
@@ -50,7 +55,16 @@ configure_xmrig() {
     # Make run script executable
     chmod +x run_xmrig.sh
 
-    echo "XMRig has been configured successfully."
+    echo -e "${GREEN}XMRig has been configured successfully.${NC}"
+    
+    read -p "Do you want to run XMRig now? (y/n): " run_choice
+    if [ "$run_choice" == "y" ] || [ "$run_choice" == "Y" ]; then
+        echo -e "${GREEN}Running XMRig...${NC}"
+        ./run_xmrig.sh
+    else
+        echo -e "To run XMRig later, execute the following command: ${YELLOW}./run_xmrig.sh${NC}"
+        exit 0
+    fi
 }
 
 # Function to validate the custom pool URL
@@ -61,26 +75,23 @@ validate_url() {
     fi
 
     if curl --output /dev/null --silent --head --fail "$url"; then
-        echo "Custom pool URL is valid."
+        echo -e "${GREEN}Custom pool URL is valid.${NC}"
     else
-        echo "Invalid custom pool URL. Exiting..."
+        echo -e "${RED}Invalid custom pool URL. Exiting...${NC}"
         exit 1
     fi
 }
 
 # Check if run_xmrig.sh exists
 if [ -f run_xmrig.sh ]; then
-    echo "XMRig is already configured."
+    echo -e "${YELLOW}XMRig is already configured.${NC}"
     read -p "Do you want to reconfigure XMRig? (y/n): " reconfigure_choice
     if [ "$reconfigure_choice" == "y" ] || [ "$reconfigure_choice" == "Y" ]; then
         configure_xmrig
     else
-        echo "Exiting..."
+        echo -e "${GREEN}Exiting...${NC}"
         exit 0
     fi
 else
     configure_xmrig
 fi
-
-# Execute run script
-./run_xmrig.sh
