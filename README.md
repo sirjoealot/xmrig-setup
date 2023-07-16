@@ -53,6 +53,4 @@ Contributions are welcome! If you encounter any issues or have suggestions for i
 
 This project is licensed under the [MIT License](LICENSE).
 
----
 **Disclaimer: Use this script at your own risk. Make sure to review the code before executing it on your system.**
-```
