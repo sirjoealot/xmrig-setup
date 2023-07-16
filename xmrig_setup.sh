@@ -23,3 +23,12 @@ cmake ..
 
 # Build xmrig
 make
+
+# Download configure_xmrig.sh from GitHub repo
+wget https://raw.githubusercontent.com/joehighton/xmrig-setup/main/configure_xmrig.sh
+
+# Make configure_xmrig.sh executable
+chmod +x configure_xmrig.sh
+
+# Call configure_xmrig.sh script
+./configure_xmrig.sh
