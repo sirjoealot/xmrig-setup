@@ -6,10 +6,11 @@ This script automates the installation of Xmrig on Ubuntu and other Debian-based
 
 Xmrig is an open-source, high-performance Monero (XMR) CPU miner. It allows individuals to contribute their computing power to the Monero network by mining XMR cryptocurrency using their CPUs. Xmrig is known for its efficiency, scalability, and support for various CPU architectures.
 
+For more information about Xmrig, visit the [official repository](https://github.com/xmrig/xmrig).
+
 ## Prerequisites
 
-- Ubuntu or other Debian-based distributions
-- `sudo` access to install packages and run commands
+- Ubuntu or other Debian-based distribution
 
 ## Usage
 
@@ -48,8 +49,5 @@ Contributions are welcome! If you encounter any issues or have suggestions for i
 This project is licensed under the [MIT License](LICENSE).
 
 ---
-
-For more information about Xmrig, visit the [official repository](https://github.com/xmrig/xmrig).
-
 **Disclaimer: Use this script at your own risk. Make sure to review the code before executing it on your system.**
 ```
