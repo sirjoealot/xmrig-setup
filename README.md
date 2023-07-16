@@ -1,4 +1,5 @@
-# XMRig Setup Script
+# XMRig Setup & Configuration Script
+[![License: MIT](https://img.shields.io/github/license/joehighton/xmrig-setup.svg)](https://github.com/joehighton/xmrig-setup/blob/main/LICENSE)
 
 This script automates the installation of Xmrig on Ubuntu and other Debian-based distributions. It helps you set up the necessary dependencies, clone the Xmrig repository, and build the software easily.
 
