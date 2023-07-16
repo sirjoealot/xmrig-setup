@@ -12,7 +12,7 @@ This script automates the installation of Xmrig on Ubuntu and other Debian-based
 1. Download the setup script to your local machine.
 
    ```bash
-   wget
+   wget https://raw.githubusercontent.com/joehighton/xmrig-setup/main/xmrig_setup.sh
    ```
 
 2. Make the script executable.
