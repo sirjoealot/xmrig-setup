@@ -36,8 +36,8 @@ For more information about XMRig, visit the [official repository](https://github
    The script will perform the following steps:
    - Update and upgrade the system
    - Install necessary dependencies
-   - Clone the Xmrig repository
-   - Build Xmrig using CMake and Make
+   - Clone the XMRig repository
+   - Build XMRig using CMake and Make
    - Configure XMRig with the selected pool and wallet address
 
 4. Once the script completes, you can find the built XMRig executable in the `xmrig/build` directory.
