@@ -3,6 +3,7 @@
 # Define color variables
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 # Define pool options
@@ -22,17 +23,20 @@ configure_xmrig() {
     done
 
     read -p "Enter the number corresponding to your choice: " pool_choice
-    
+
     # Validate pool choice
     if [[ "$pool_choice" =~ ^[0-9]+$ ]] && [ "$pool_choice" -ge 0 ] && [ "$pool_choice" -lt "${#pool_options[@]}" ]; then
         if [ "$pool_choice" -eq $(( ${#pool_options[@]} - 1 )) ]; then
             # Custom Pool URL
-            read -p "Enter the custom pool URL (leave blank for default): " pool_url
-            if [ -z "$pool_url" ]; then
-                pool_url="${pool_options[$(( ${#pool_options[@]} - 1 ))]}"
-            else
-                validate_url "$pool_url"
-            fi
+            while true; do
+                read -p "Enter the custom pool URL (leave blank to try again): " pool_url
+                if [ -z "$pool_url" ]; then
+                    continue
+                else
+                    validate_url "$pool_url"
+                    break
+                fi
+            done
         else
             pool_url="${pool_options[$pool_choice]}"
         fi
@@ -42,7 +46,14 @@ configure_xmrig() {
     fi
 
     # Prompt for wallet address
-    read -p "Enter your XMR wallet address: " wallet_address
+    while true; do
+        read -p "Enter your XMR wallet address: " wallet_address
+        if [ -z "$wallet_address" ]; then
+            continue
+        else
+            break
+        fi
+    done
 
     # Remove old run_xmrig.sh if exists
     if [ -f run_xmrig.sh ]; then
@@ -56,7 +67,7 @@ configure_xmrig() {
     chmod +x run_xmrig.sh
 
     echo -e "${GREEN}XMRig has been configured successfully.${NC}"
-    
+
     read -p "Do you want to run XMRig now? (y/n): " run_choice
     if [ "$run_choice" == "y" ] || [ "$run_choice" == "Y" ]; then
         echo -e "${GREEN}Running XMRig...${NC}"
